@@ -14,6 +14,7 @@ html {
 }
 body{
     overflow-x:hidden;
+    font-size: 16px;
 }
 ul li{
     list-style: none;
@@ -106,6 +107,12 @@ header{
     height: 60px;
     z-index: 1;
 }
+.user-account i{
+    color: #dc3545;
+}
+.user-account small{
+    font-size: 1.2rem;
+}
 .Logo{
     width: 130px;
     max-height: 50px;
@@ -138,6 +145,7 @@ main{
 }
 .overlay {
     position: absolute;
+    max-width: 90%;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -145,12 +153,11 @@ main{
     color: white;
 }
 .overlay h5 {
-    font-size: 20px;
-    width: 500px;
+    font-size: 1rem;
     margin-bottom: 10px;
 }
 .overlay h1 {
-    font-size: 30px;
+    font-size: 1.6rem;
     font-weight: bolder;
     margin-bottom: 10px;
 }
