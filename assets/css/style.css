@@ -1,0 +1,101 @@
+@font-face {
+    font-family: 'IRANSans';
+     src: url('/assets/Fonts/IRANSans/IRANSansWeb_UltraLight.woff') format('woff2');
+}
+* {
+    font-size: 1em;
+    margin: 0;
+    padding: 0;
+    font-family: 'IRANSans', sans-serif;
+    box-sizing: border-box;
+    direction: rtl;
+}
+html {
+    scroll-behavior: smooth;
+}
+body{
+    overflow-x:hidden;
+}
+ul li{
+    list-style: none;
+}
+a{
+    text-decoration: none !important;
+    color: #181818;
+}
+aside a{
+    color: #181818;
+}
+.sidebar ul li{
+    margin-left: 40px;
+    position: relative;
+    transition: background .3s ease-in-out;
+    -webkit-transition: background .3s ease-in-out;
+    -moz-transition: background .3s ease-in-out;
+    -ms-transition: background .3s ease-in-out;
+    -o-transition: background .3s ease-in-out;
+}
+.pointer{
+    cursor: pointer;
+}
+.sidebar{
+    font-size: 1.4em;
+    width: 350px;
+    min-height: 100vh;
+    border-right: 1px solid #e1e1e1;
+    background-color: white;
+    left: -350px;
+    top: 0 !important;
+    box-shadow: 4px 2px 3px #818181;
+    border-top-right-radius: 15px;
+    z-index: 1000;
+    position: fixed;
+    transition: left .4s ease-in-out;
+    -webkit-transition: left .4s ease-in-out;
+    -moz-transition: left .4s ease-in-out;
+    -ms-transition: left .4s ease-in-out;
+    -o-transition: left .4s ease-in-out;
+    visibility: hidden;
+}
+.nav{
+    cursor: pointer;
+}
+.sidebar.active{
+    left: 0;
+}
+.nav::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    visibility: visible;
+    transform: scaleX(1);
+    width: 0;
+    height: 1px; /* Adjust the height of the underline as needed */
+    background-color: #181818;
+    transition: width 0.5s ease-in-out;
+}
+
+.nav:hover::after {
+    width: 100%;
+}
+.fade-in {
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out;
+    -webkit-transition: opacity 0.3s ease-in-out;
+    -moz-transition: opacity 0.3s ease-in-out;
+    -ms-transition: opacity 0.3s ease-in-out;
+    -o-transition: opacity 0.3s ease-in-out;
+}
+
+.fade-out {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    visibility: hidden;
+    pointer-events: none;
+    -webkit-transition: opacity 0.3s ease-in-out;
+    -moz-transition: opacity 0.3s ease-in-out;
+    -ms-transition: opacity 0.3s ease-in-out;
+    -o-transition: opacity 0.3s ease-in-out;
+}

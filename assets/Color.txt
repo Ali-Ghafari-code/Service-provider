@@ -1,0 +1,30 @@
+sample web = https://kitchencabinetguys.net/
+
+body {
+    background-color: #f9e64f; /* زمینه‌ی صفحه */
+    color: #333; /* رنگ متن */
+}
+
+.header {
+    background-color: #78aaff; /* پس‌زمینه هدر */
+    color: #fff; /* رنگ متن هدر */
+}
+
+.footer {
+    background-color: #82c29b; /* پس‌زمینه فوتر */
+    color: #fff; /* رنگ متن فوتر */
+}
+
+.button {
+    background-color: #78aaff; /* پس‌زمینه دکمه‌ها */
+    color: #fff; /* رنگ متن دکمه‌ها */
+}
+
+.link {
+    color: #78aaff; /* رنگ پیوندها */
+}
+
+.section {
+    background-color: #fff; /* پس‌زمینه بخش‌ها */
+    border: 1px solid #a6a6a6; /* حاشیه بخش‌ها */
+}
