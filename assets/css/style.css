@@ -162,4 +162,17 @@ main{
     margin-bottom: 10px;
 }
 
+.costTitle h5{
+    font-weight: bold;
+}
+.icondollar{
+    border: 1px solid lightgray;
+    border-radius: 20em;
+    width: 60px;
+    background-color: #ffe2e2;
+}
+.icondollar i{
+    font-size: 1.4rem;
+    color: #dc3545;
+}
 
