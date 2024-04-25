@@ -176,3 +176,13 @@ main{
     color: #dc3545;
 }
 
+.service-img img{
+    border-radius: 20px;
+    object-fit: cover;
+}
+.service-desc h2{
+    font-weight: bolder;
+}
+.service-desc p{
+    font-size: 1.1rem;
+}
