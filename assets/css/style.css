@@ -213,3 +213,6 @@ main{
 .bg-footer{
     background-color: #2c2525;
 }
+.mt-6{
+    margin-top: 4.5rem!important;
+}
