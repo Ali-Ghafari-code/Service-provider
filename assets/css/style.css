@@ -121,8 +121,6 @@ header{
     max-height: 50px;
     object-fit: cover;
 }
-main{
-}
 .home-img{
     height: 100vh;
     overflow: hidden;
@@ -214,5 +212,5 @@ main{
     background-color: #2c2525;
 }
 .mt-6{
-    margin-top: 4.5rem!important;
+    margin-top: 6rem!important;
 }

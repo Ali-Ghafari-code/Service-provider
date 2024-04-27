@@ -36,7 +36,7 @@ function toggleSubMenu(clickedElement) {
     // Toggle the visibility of the selected submenu
     submenu.classList.toggle("d-none");
 }
-jalaliDatepicker.startWatch();
+jalaliDatepicker.startWatch({ time: true });
 btn.addEventListener('click', function () {
     sidebar.classList.add('active');
     sidebar.style.visibility = 'visible';
