@@ -38,6 +38,10 @@ aside a{
     -ms-transition: background .3s ease-in-out;
     -o-transition: background .3s ease-in-out;
 }
+form{
+    background: rgb(174,238,195);
+    background: linear-gradient(36deg, rgba(174,238,195,1) 0%, rgba(148,187,233,1) 100%);
+}
 .pointer{
     cursor: pointer;
 }
