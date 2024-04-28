@@ -197,12 +197,9 @@ header{
 .footer p{
     font-size: 1rem;
 }
-.follow-us-icon button{
-    border-radius: 100%;
-}
 .follow-us-icon i{
-    font-size: 1.3rem;
-    color: black;
+    font-size: 1.7rem;
+    color: #dc3545;
 }
 .bg-gray{
     border-radius: 30px;
