@@ -69,6 +69,9 @@ aside a{
 .sign{
     height: 100vh;
 }
+.log{
+    height: 100vh;
+}
 .nav::after {
     content: "";
     position: absolute;
@@ -222,6 +225,7 @@ header{
     box-shadow: 0 0 1.2rem #dc3545;
 }
 .sign-container{
+    
     height: fit-content;
     border: 1px solid #dce0e1;
     border-radius: 20px;
@@ -234,6 +238,22 @@ header{
     font-size: 1.2rem;
 }
 .sign-container .form-control:focus{
+    border-color: #dc3545;
+    box-shadow: 0 0 0 .25rem #fca8af;
+}
+.login-container{
+    height: fit-content;
+    border: 1px solid #dce0e1;
+    border-radius: 20px;
+    box-shadow: 0 20px 20px .25rem #dce0e1;
+}
+.login-container h1{
+    font-weight: bold;
+}
+.login-container label{
+    font-size: 1.2rem;
+}
+.login-container .form-control:focus{
     border-color: #dc3545;
     box-shadow: 0 0 0 .25rem #fca8af;
 }
