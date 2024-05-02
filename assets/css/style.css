@@ -38,10 +38,6 @@ aside a{
     -ms-transition: background .3s ease-in-out;
     -o-transition: background .3s ease-in-out;
 }
-form{
-    background: rgb(174,238,195);
-    background: linear-gradient(36deg, rgba(174,238,195,1) 0%, rgba(148,187,233,1) 100%);
-}
 .pointer{
     cursor: pointer;
 }
@@ -69,6 +65,9 @@ form{
 }
 .sidebar.active{
     left: 0;
+}
+.sign{
+    height: 100vh;
 }
 .nav::after {
     content: "";
@@ -221,4 +220,20 @@ header{
 .cardrequest:hover{
     cursor: pointer;
     box-shadow: 0 0 1.2rem #dc3545;
+}
+.sign-container{
+    height: fit-content;
+    border: 1px solid #dce0e1;
+    border-radius: 20px;
+    box-shadow: 0 20px 20px .25rem #dce0e1;
+}
+.sign-container h1{
+    font-weight: bold;
+}
+.sign-container label{
+    font-size: 1.2rem;
+}
+.sign-container .form-control:focus{
+    border-color: #dc3545;
+    box-shadow: 0 0 0 .25rem #fca8af;
 }
