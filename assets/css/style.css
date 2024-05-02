@@ -41,73 +41,6 @@ aside a{
 .pointer{
     cursor: pointer;
 }
-.sidebar{
-    font-size: 1.4em;
-    width: 350px;
-    min-height: 100vh;
-    border-right: 1px solid #e1e1e1;
-    background-color: white;
-    left: -350px;
-    top: 0 !important;
-    box-shadow: 4px 2px 3px #818181;
-    border-top-right-radius: 15px;
-    z-index: 1000;
-    position: fixed;
-    transition: left .4s ease-in-out;
-    -webkit-transition: left .4s ease-in-out;
-    -moz-transition: left .4s ease-in-out;
-    -ms-transition: left .4s ease-in-out;
-    -o-transition: left .4s ease-in-out;
-    visibility: hidden;
-}
-.nav{
-    cursor: pointer;
-}
-.sidebar.active{
-    left: 0;
-}
-.sign{
-    height: 100vh;
-}
-.log{
-    height: 100vh;
-}
-.nav::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    visibility: visible;
-    transform: scaleX(1);
-    width: 0;
-    height: 1px; /* Adjust the height of the underline as needed */
-    background-color: #181818;
-    transition: width 0.5s ease-in-out;
-}
-
-.nav:hover::after {
-    width: 100%;
-}
-.fade-in {
-    opacity: 1;
-    transition: opacity 0.3s ease-in-out;
-    -webkit-transition: opacity 0.3s ease-in-out;
-    -moz-transition: opacity 0.3s ease-in-out;
-    -ms-transition: opacity 0.3s ease-in-out;
-    -o-transition: opacity 0.3s ease-in-out;
-}
-
-.fade-out {
-    opacity: 0;
-    transition: opacity 0.3s ease-in-out;
-    visibility: hidden;
-    pointer-events: none;
-    -webkit-transition: opacity 0.3s ease-in-out;
-    -moz-transition: opacity 0.3s ease-in-out;
-    -ms-transition: opacity 0.3s ease-in-out;
-    -o-transition: opacity 0.3s ease-in-out;
-}
 header{
     background-color: #ffffff;
     font-size: 1.2em;
@@ -225,7 +158,6 @@ header{
     box-shadow: 0 0 1.2rem #dc3545;
 }
 .sign-container{
-    
     height: fit-content;
     border: 1px solid #dce0e1;
     border-radius: 20px;
@@ -257,3 +189,27 @@ header{
     border-color: #dc3545;
     box-shadow: 0 0 0 .25rem #fca8af;
 }
+.panel-header{
+    background-color: white;
+    border-radius: 20px;
+    height: fit-content;
+    box-shadow: 0 20px 20px .25rem #c7c5c5;
+}
+
+.user-img img{
+    width: 4rem;
+    object-fit: cover;
+}
+.user-panel-menu{
+    height: 40px;
+}
+.user-panel-menu a{
+    font-weight: bold;
+}
+.user-panel-menu a:focus{
+    color: #dc3545;
+    border-bottom: 1px solid #ee293c;
+    background: rgb(255,255,255);
+    background: linear-gradient(180deg, rgba(255,255,255,1) 36%, rgba(255,225,227,1) 100%);
+}
+

@@ -48,4 +48,3 @@ close.addEventListener('click', function () {
 
 
 
-
