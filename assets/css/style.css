@@ -195,13 +195,25 @@ header{
     height: fit-content;
     box-shadow: 0 20px 20px .25rem #c7c5c5;
 }
-
+.panel-main{
+    background-color: white;
+    border-radius: 10px;
+    height: fit-content;
+    box-shadow: 0 20px 20px .25rem #c7c5c5;
+}
+.panel-sidebar{
+    background-color: white;
+    border-radius: 10px;
+    height: fit-content;
+    box-shadow: 0 20px 20px .25rem #c7c5c5;
+}
 .user-img img{
     width: 4rem;
     object-fit: cover;
 }
 .user-panel-menu{
-    height: 40px;
+    z-index: 10;
+    height: 50px;
 }
 .user-panel-menu a{
     font-weight: bold;
@@ -212,4 +224,6 @@ header{
     background: rgb(255,255,255);
     background: linear-gradient(180deg, rgba(255,255,255,1) 36%, rgba(255,225,227,1) 100%);
 }
-
+.user-info-container label{
+    font-size: 1.1rem;
+}
