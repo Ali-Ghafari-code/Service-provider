@@ -1,7 +1,9 @@
+
 @font-face {
     font-family: 'IRANSans';
      src: url('/assets/Fonts/IRANSans/IRANSansWeb_UltraLight.woff') format('woff2');
 }
+
 * {
     margin: 0;
     padding: 0;
@@ -214,6 +216,7 @@ header{
 .user-panel-menu{
     z-index: 10;
     height: 50px;
+    overflow-x: auto;
 }
 .user-panel-menu a{
     font-weight: bold;
