@@ -12,15 +12,12 @@ class HomeView(TemplateView):
 
 
 def site_header_partial(request):
-    # setting = SiteSetting.objects.filter(is_main_setting=True).first()
-    # category = ProductCategory.objects.filter(is_active=True)
-    # child_category = ChildCategory.objects.filter(is_active=True)
-    # context = {
-    #     'site_setting': setting,
-    #     'category': category,
-    #     'child_category': child_category,
-    # }
-    return render(request, 'shared/site_header_section.html', {})
+    user = request.user
+    full_name = user.fullname if user.is_authenticated else None  # Assuming the full name is stored in a field named 'full_name'
+    context = {
+        'full_name': full_name,
+    }
+    return render(request, 'shared/site_header_section.html', context)
 
 
 def site_footer_partial(request):

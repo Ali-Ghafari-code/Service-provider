@@ -11,14 +11,17 @@
         <div class="col">
             <div class="login-container m-auto mt-6 p-md-4">
                 <h1 class="d-flex justify-content-center mt-4">ورود به حساب کاربری</h1>
-                <form class="sign-form px-md-5 px-1">
+                <form method="post" action="{% url 'login_page' %}" class="sign-form px-md-5 px-1">
+                    {% csrf_token %}
                     <div class="form-group mt-md-5 mt-3">
-                        <label for="exampleInputEmail1" class="mb-2 mx-1">شماره ی موبایل یا ایمیل :</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="آدرس ایمیل خود را وارد کنید">
+                        <label for="exampleInputEmail1" class="mb-2 mx-1">ایمیل :</label>
+                            {{ login_form.email }}
+                            {{ login_form.email.errors }}
                     </div>
                     <div class="form-group mt-md-4 mt-3">
                         <label for="exampleInputPassword1" class="mb-2 mx-1">رمز عبور :</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="رمز عبور خود را وارد کنید">
+                            {{ login_form.password }}
+                            {{ login_form.password.errors }}
                     </div>
                     <div class="d-flex justify-content-md-between flex-md-row flex-column align-items-center mt-md-5 mt-4">
                         <button type="submit" class="btn btn-danger">ورود به حساب کاربری</button>

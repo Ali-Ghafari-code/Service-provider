@@ -3,7 +3,10 @@
         <section class="col-12 mt-3">
                 <div class="container d-flex justify-content-between">
                     <div class="user-account">
-                        <a href="#"><i class="fa-regular fa-user px-2"></i><small class="d-none d-md-inline"> حساب کاربری</small></a>
+                        <a href="#"><i class="fa-regular fa-user px-2"></i><small class="d-none d-md-inline">{% if full_name %}
+                            {{ full_name }}
+                            {% else %}حساب کاربری{% endif %}
+                        </small></a>
                     </div>
                     <div>
                         <a href="#"><img src="/static/images/Logo.PNG" class="Logo" alt="Logo"></a>

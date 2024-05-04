@@ -5,7 +5,7 @@ from django.contrib.auth import login, logout
 from django.shortcuts import render, redirect
 from django.views import View
 from django.utils.crypto import get_random_string
-from account_module.forms import RegisterForm
+from account_module.forms import RegisterForm, LoginForm
 from account_module.models import User
 from account_module.forms import RegisterForm
 
@@ -36,6 +36,9 @@ class RegisterView(View):
                 if is_servicer == "servicer":
                     new_user = User(email=user_email, email_active_code=get_random_string(72), is_active=False,
                                 username=user_email, fullname=fullname, is_servicer=True)
+                else:
+                    new_user = User(email=user_email, email_active_code=get_random_string(72), is_active=False,
+                                    username=user_email, fullname=fullname)
                 new_user.set_password(user_password)
                 new_user.save()
                 # send_email('فعال سازی حساب کاربری', new_user.email, {'user': new_user}, 'emails/active_account.html')
@@ -49,35 +52,36 @@ class RegisterView(View):
 
 class LoginView(View):
     def get(self, request):
-        # login_form = LoginForm()
-        # context = {
-        #     'login_form': login_form
-        # }
-        return render(request, 'account_module/login.html', {})
+        login_form = LoginForm()
+        context = {
+            'login_form': login_form
+        }
+        return render(request, 'account_module/login.html', context)
 
     def post(self, request):
-        # login_form = LoginForm(request.POST)
-        # if login_form.is_valid():
-        #     user_email = login_form.cleaned_data.get('email')
-        #     user_password = login_form.cleaned_data.get('password')
-        #     user: User = User.objects.filter(email__iexact=user_email).first()
-        #     if user is not None:
-        #         if not user.is_active:
-        #             login_form.add_error('email', 'حساب کاربری شما فعال نشده است.')
-        #         else:
-        #             is_password_correct = user.check_password(user_password)
-        #             if is_password_correct:
-        #                 login(request, user)
-        #                 return redirect(reverse('home_page'))
-        #             else:
-        #                 login_form.add_error('email', 'نام کاربری و یا کلمه ی عبور اشتباه است')
-        #     else:
-        #         login_form.add_error('email', 'کاربری با مشخصات وارد شده پیدا نشد.')
-        #
-        # context = {
-        #     'login_form': login_form
-        # }
-        return render(request, 'account_module/login.html', {})
+        login_form = LoginForm(request.POST)
+        if login_form.is_valid():
+            user_email = login_form.cleaned_data.get('email')
+            user_password = login_form.cleaned_data.get('password')
+            user = User.objects.filter(email__iexact=user_email).first()
+
+            if user is not None:
+                if not user.is_active:
+                    login_form.add_error('email', 'حساب کاربری شما فعال نشده است.')
+                else:
+                    is_password_correct = user.check_password(user_password)
+                    if is_password_correct:
+                        login(request, user)
+                        return redirect(reverse('home_page'))
+                    else:
+                        login_form.add_error('email', 'نام کاربری و یا کلمه ی عبور اشتباه است')
+            else:
+                login_form.add_error('email', 'کاربری با مشخصات وارد شده پیدا نشد.')
+
+        context = {
+            'login_form': login_form
+        }
+        return render(request, 'account_module/login.html', context)
 
 #
 # class ActivateAccountView(View):
