@@ -11,30 +11,33 @@
         <div class="col">
             <div class="sign-container w-md-50 m-auto mt-6 p-md-4">
                 <h1 class="d-flex justify-content-center mt-4">ثبت نام</h1>
-                <form class="sign-form px-md-5 px-1">
+                <form method="post" action="{% url 'register_page' %}" class="sign-form px-md-5 px-1">
+                    {% csrf_token %}
                     <div class="form-group">
                         <label class="mb-2 mx-1">نام و نام خانوادگی :</label>
-                        <input type="text" class="form-control" placeholder="نام و نام خانوادگی خود را کامل وارد کنید">
+                                    {{ register_form.fullname }}
+                                    {{ register_form.fullname.errors }}
                     </div>
                     <div class="form-group mt-3">
                         <label for="exampleInputEmail1" class="mb-2 mx-1">ایمیل :</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="آدرس ایمیل خود را وارد کنید">
+                                    {{ register_form.email }}
+                                    {{ register_form.email.errors }}
                     </div>
                     <div class="form-group mt-3">
                         <label for="exampleInputPassword1" class="mb-2 mx-1">رمز عبور :</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="رمز عبور خود را وارد کنید">
+                                    {{ register_form.password }}
+                                    {{ register_form.password.errors }}
+                    </div>
+                    <div class="form-group mt-3">
+                        <label for="exampleInputPassword1" class="mb-2 mx-1">تکرار رمز عبور :</label>
+                                    {{ register_form.confirm_password }}
+                                    {{ register_form.confirm_password.errors }}
                     </div>
                         <div class="form-check-reverse my-2">
                             <label class="form-check-label" for="flexRadioDefault1">
-                                خدمات رسان
+                                کاربر یا خدمات رسان
                             </label>
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
-                        </div>
-                        <div class="form-check-reverse">
-                            <label class="form-check-label" for="flexRadioDefault2">
-                                کارفرما
-                            </label>
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+                                {{ register_form.user_type }}
                         </div>
                     <div class="d-flex justify-content-md-between flex-md-row flex-column align-items-center mt-4">
                         <button type="submit" class="btn btn-danger">ساخت حساب کاربری</button>

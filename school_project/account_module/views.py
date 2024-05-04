@@ -5,41 +5,46 @@ from django.contrib.auth import login, logout
 from django.shortcuts import render, redirect
 from django.views import View
 from django.utils.crypto import get_random_string
+from account_module.forms import RegisterForm
+from account_module.models import User
+from account_module.forms import RegisterForm
 
 
-# from account_module.forms import RegisterForm, LoginForm, ForgotPasswordForm, ResetPasswordForm
 # from utils.email_service import send_email
 
 # Create your views here.
 
 class RegisterView(View):
     def get(self, request):
-        # register_form = RegisterForm()
-        # context = {
-        #     'register_form': register_form
-        # }
-        return render(request, 'account_module/register.html', {})
+        register_form = RegisterForm()
+        context = {
+            'register_form': register_form
+        }
+        return render(request, 'account_module/register.html', context)
 
     def post(self, request):
-        # register_form = RegisterForm(request.POST)
-        # if register_form.is_valid():
-        #     user_email = register_form.cleaned_data.get('email')
-        #     user_password = register_form.cleaned_data.get('password')
-        #     user: bool = User.objects.filter(email__iexact=user_email).exists()
-        #     if user:
-        #         register_form.add_error('email', 'ایمیل وارد شده تکراری میباشد')
-        #     else:
-        #         new_user = User(email=user_email, email_active_code=get_random_string(72), is_active=False,
-        #                         username=user_email)
-        #         new_user.set_password(user_password)
-        #         new_user.save()
-        #         send_email('فعال سازی حساب کاربری', new_user.email, {'user':new_user}, 'emails/active_account.html')
-        #         return redirect(reverse('login_page'))
-        #
-        # context = {
-        #     'register_form': register_form
-        # }
-        return render(request, 'account_module/register.html', {})
+        register_form = RegisterForm(request.POST)
+        if register_form.is_valid():
+            user_email = register_form.cleaned_data.get('email')
+            fullname = register_form.cleaned_data.get('fullname')
+            user_password = register_form.cleaned_data.get('password')
+            is_servicer = register_form.cleaned_data.get('user_type')
+            user: bool = User.objects.filter(email__iexact=user_email).exists()
+            if user:
+                register_form.add_error('email', 'ایمیل وارد شده تکراری میباشد')
+            else:
+                if is_servicer == "servicer":
+                    new_user = User(email=user_email, email_active_code=get_random_string(72), is_active=False,
+                                username=user_email, fullname=fullname, is_servicer=True)
+                new_user.set_password(user_password)
+                new_user.save()
+                # send_email('فعال سازی حساب کاربری', new_user.email, {'user': new_user}, 'emails/active_account.html')
+                return redirect(reverse('login_page'))
+
+        context = {
+            'register_form': register_form
+        }
+        return render(request, 'account_module/register.html', context)
 
 
 class LoginView(View):

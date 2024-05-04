@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'school_project.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-
+AUTH_USER_MODEL = 'account_module.User'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
