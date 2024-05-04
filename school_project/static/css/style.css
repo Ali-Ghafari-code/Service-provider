@@ -1,0 +1,239 @@
+
+@font-face {
+    font-family: 'IRANSans';
+     src: url('/assets/Fonts/IRANSans/IRANSansWeb_UltraLight.woff') format('woff2');
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'IRANSans', sans-serif;
+    box-sizing: border-box;
+    direction: rtl;
+}
+html {
+    scroll-behavior: smooth;
+}
+body{
+    overflow-x:hidden;
+    font-size: 16px;
+    background: rgb(255,255,255);
+    background: linear-gradient(142deg, rgba(255,255,255,1) 28%, rgba(236,236,236,1) 51%, rgba(255,255,255,1) 84%);
+}
+
+ul li{
+    list-style: none;
+}
+a{
+    text-decoration: none !important;
+    color: #181818;
+}
+aside a{
+    color: #181818;
+}
+.sidebar ul li{
+    margin-left: 40px;
+    position: relative;
+    transition: background .3s ease-in-out;
+    -webkit-transition: background .3s ease-in-out;
+    -moz-transition: background .3s ease-in-out;
+    -ms-transition: background .3s ease-in-out;
+    -o-transition: background .3s ease-in-out;
+}
+.pointer{
+    cursor: pointer;
+}
+header{
+    background-color: #ffffff;
+    font-size: 1.2em;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    height: 60px;
+    z-index: 1;
+}
+.user-account i{
+    color: #dc3545;
+}
+.user-account small{
+    font-size: 1.2rem;
+}
+.Logo{
+    width: 130px;
+    max-height: 50px;
+    object-fit: cover;
+}
+.home-img{
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+}
+.home-img img{
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.home-img::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.img-container {
+    position: relative;
+}
+.overlay {
+    position: absolute;
+    max-width: 90%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+}
+.overlay h5 {
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+.overlay h1 {
+    font-size: 1.6rem;
+    font-weight: bolder;
+    margin-bottom: 10px;
+}
+
+.costTitle h5{
+    font-weight: bold;
+}
+.icondollar{
+    border: 1px solid lightgray;
+    border-radius: 20em;
+    width: 60px;
+    background-color: #ffe2e2;
+}
+.icondollar i{
+    font-size: 1.4rem;
+    color: #dc3545;
+}
+
+.service-img img{
+    border-radius: 20px;
+    object-fit: cover;
+}
+.service-desc h2{
+    font-weight: bolder;
+}
+.service-desc p{
+    font-size: 1.1rem;
+}
+.footer{
+    height: fit-content;
+    color: white;
+}
+.footer h5{
+    font-weight: bold;
+}
+.footer p{
+    font-size: 1rem;
+}
+.follow-us-icon i{
+    font-size: 1.7rem;
+    color: #dc3545;
+}
+.bg-gray{
+    border-radius: 30px;
+    background-color: #f8f8f8;
+}
+.bg-footer{
+    background-color: #2c2525;
+}
+.mt-6{
+    margin-top: 6rem!important;
+}
+.cardrequest{
+    transition: 0.4s;
+}
+.cardrequest:hover{
+    cursor: pointer;
+    box-shadow: 0 0 1.2rem #dc3545;
+}
+.sign-container{
+    height: fit-content;
+    border: 1px solid #dce0e1;
+    border-radius: 20px;
+    box-shadow: 0 20px 20px .25rem #dce0e1;
+}
+.sign-container h1{
+    font-weight: bold;
+}
+.sign-container label{
+    font-size: 1.2rem;
+}
+.sign-container .form-control:focus{
+    border-color: #dc3545;
+    box-shadow: 0 0 0 .25rem #fca8af;
+}
+.login-container{
+    height: fit-content;
+    border: 1px solid #dce0e1;
+    border-radius: 20px;
+    box-shadow: 0 20px 20px .25rem #dce0e1;
+}
+.login-container h1{
+    font-weight: bold;
+}
+.login-container label{
+    font-size: 1.2rem;
+}
+.login-container .form-control:focus{
+    border-color: #dc3545;
+    box-shadow: 0 0 0 .25rem #fca8af;
+}
+.panel-header{
+    background-color: white;
+    border-radius: 20px;
+    height: fit-content;
+    box-shadow: 0 20px 20px .25rem #c7c5c5;
+}
+.panel-main{
+    background-color: white;
+    border-radius: 10px;
+    height: fit-content;
+    box-shadow: 0 20px 20px .25rem #c7c5c5;
+}
+.panel-sidebar{
+    background-color: white;
+    border-radius: 10px;
+    height: fit-content;
+    box-shadow: 0 20px 20px .25rem #c7c5c5;
+}
+.user-img img{
+    width: 4rem;
+    object-fit: cover;
+}
+.user-panel-menu{
+    z-index: 10;
+    height: 50px;
+    overflow-x: auto;
+}
+.user-panel-menu a{
+    font-weight: bold;
+}
+.user-panel-menu a:focus{
+    color: #dc3545;
+    border-bottom: 1px solid #ee293c;
+    background: rgb(255,255,255);
+    background: linear-gradient(180deg, rgba(255,255,255,1) 36%, rgba(255,225,227,1) 100%);
+}
+.user-info-container label{
+    font-size: 1.1rem;
+}
+.user-info-edit-container label{
+    font-size: 1.1rem;
+}
+.user-info-edit-container .form-control:focus{
+    border-color: #dc3545;
+    box-shadow: 0 0 0 .25rem #fca8af;
+}

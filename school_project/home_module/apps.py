@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class ServiceDeliveryConfig(AppConfig):
+class HomeModuleConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'service_delivery'
+    name = 'home_module'
