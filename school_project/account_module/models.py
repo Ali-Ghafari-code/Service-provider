@@ -28,7 +28,7 @@ class Servicer(models.Model):
     certificate = models.CharField(max_length=100, verbose_name='مدارک تحصیلی')
     type = models.CharField(max_length=100, verbose_name='نوع خدمات رسانی')
     is_submited = models.BooleanField(verbose_name='تایید شده', default=False)
-    experince = models.IntegerField(null=True, blank=True, verbose_name='سال تجربه')
+    experience = models.IntegerField(null=True, blank=True, verbose_name='سال تجربه')
     description = models.CharField(max_length=300, verbose_name='توضیحات')
 
 

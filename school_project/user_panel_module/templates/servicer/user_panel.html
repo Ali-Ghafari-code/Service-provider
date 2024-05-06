@@ -68,11 +68,11 @@
                                     <div class="d-flex justify-content-between ">
                                         <label class="p-3"> مدارک تحصیلی :</label>
                                     </div>
-                                    <input type="text" class="form-control" placeholder="{{ user.certificate }}" disabled>
+                                    <input type="text" class="form-control" placeholder="{{ request.session.servicer_info.certificate }}" disabled>
                                     <div class="d-flex justify-content-between">
                                         <label class="p-3">سابقه کار :</label>
                                     </div>
-                                    <input type="text" class="form-control" placeholder="{{ user.experince }}" disabled>
+                                    <input type="text" class="form-control" placeholder="{{ request.session.servicer_info.experience }}" disabled>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="d-flex justify-content-between ">
@@ -82,7 +82,7 @@
                                     <div class="d-flex justify-content-between">
                                         <label class="p-3">درباره ی من :</label>
                                     </div>
-                                    <input type="text" class="form-control" placeholder="{{ servicer.description }}" disabled>
+                                    <input type="text" class="form-control" placeholder="{{ request.session.servicer_info.description }}" disabled>
                                 </div>
                                 <a href="#"><button type="submit" class="btn btn-danger mt-4 w-100">ویرایش و کامل کردن اطلاعات</button></a>
                             </div>

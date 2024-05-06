@@ -35,7 +35,7 @@ class RegisterView(View):
             else:
                 if is_servicer == "servicer":
                     new_user = User(email=user_email, email_active_code=get_random_string(72), is_active=False,
-                                username=user_email, fullname=fullname, is_servicer=True)
+                                    username=user_email, fullname=fullname, is_servicer=True)
                     new_user.set_password(user_password)
                     new_user.save()
                     new_servicer = Servicer(user=new_user)
@@ -46,7 +46,7 @@ class RegisterView(View):
                                     username=user_email, fullname=fullname)
                     new_user.set_password(user_password)
                     new_user.save()
-                # send_email('فعال سازی حساب کاربری', new_user.email, {'user': new_user}, 'emails/active_account.html')
+                    # send_email('فعال سازی حساب کاربری', new_user.email, {'user': new_user}, 'emails/active_account.html')
                     return redirect('user_panel')
 
         context = {
@@ -78,9 +78,20 @@ class LoginView(View):
                     if is_password_correct:
                         login(request, user)
                         if user.is_servicer:
-                            return redirect(reverse('servicer_panel'))
-                        else:
-                            return redirect(reverse('user_panel'))
+                            servicer = Servicer.objects.filter(
+                                user=user).first()  # Filter based on the user object, not email
+                            if servicer:
+                                request.session['servicer_info'] = {
+                                    'gender': servicer.gender,
+                                    'certificate': servicer.certificate,
+                                    'type': servicer.type,
+                                    'is_submited': servicer.is_submited,
+                                    'experience': servicer.experience,
+                                    'description': servicer.description
+                                }
+                                return redirect(reverse('servicer_panel'))
+                            else:
+                                return redirect(reverse('user_panel'))
                     else:
                         login_form.add_error('email', 'نام کاربری و یا کلمه ی عبور اشتباه است')
             else:
@@ -90,6 +101,7 @@ class LoginView(View):
             'login_form': login_form
         }
         return render(request, 'account_module/login.html', context)
+
 
 #
 # class ActivateAccountView(View):
