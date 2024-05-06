@@ -5,6 +5,7 @@ from django.db import models
 class User(AbstractUser):
     avatar = models.ImageField(max_length=20, verbose_name='تصویر پروفایل', null=True, blank=True)
     fullname = models.CharField(max_length=100, verbose_name='نام و نام خانوادگی')
+    city = models.CharField(max_length=100, verbose_name='استان و شهر', blank=True, null=True)
     email_active_code = models.CharField(max_length=100, verbose_name='کد فعالسازی ایمیل')
     address = models.TextField(null=True, blank=True, verbose_name='آدرس')
     national_number = models.IntegerField(null=True, blank=True, verbose_name='شماره ملی')
@@ -34,6 +35,3 @@ class Servicer(models.Model):
     class Meta:
         verbose_name = 'خدمات دهنده'
         verbose_name_plural = 'خدمات دهندگان'
-
-    def __str__(self):
-        return self.get_username()

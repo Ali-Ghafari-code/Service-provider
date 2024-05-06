@@ -6,7 +6,7 @@ from django.shortcuts import render, redirect
 from django.views import View
 from django.utils.crypto import get_random_string
 from account_module.forms import RegisterForm, LoginForm
-from account_module.models import User
+from account_module.models import User, Servicer
 from account_module.forms import RegisterForm
 
 
@@ -36,13 +36,18 @@ class RegisterView(View):
                 if is_servicer == "servicer":
                     new_user = User(email=user_email, email_active_code=get_random_string(72), is_active=False,
                                 username=user_email, fullname=fullname, is_servicer=True)
+                    new_user.set_password(user_password)
+                    new_user.save()
+                    new_servicer = Servicer(user=new_user)
+                    new_servicer.save()
+                    return redirect('servicer_panel')
                 else:
                     new_user = User(email=user_email, email_active_code=get_random_string(72), is_active=False,
                                     username=user_email, fullname=fullname)
-                new_user.set_password(user_password)
-                new_user.save()
+                    new_user.set_password(user_password)
+                    new_user.save()
                 # send_email('فعال سازی حساب کاربری', new_user.email, {'user': new_user}, 'emails/active_account.html')
-                return redirect(reverse('login_page'))
+                    return redirect('user_panel')
 
         context = {
             'register_form': register_form
