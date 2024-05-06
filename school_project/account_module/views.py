@@ -77,7 +77,10 @@ class LoginView(View):
                     is_password_correct = user.check_password(user_password)
                     if is_password_correct:
                         login(request, user)
-                        return redirect(reverse('home_page'))
+                        if user.is_servicer:
+                            return redirect(reverse('servicer_panel'))
+                        else:
+                            return redirect(reverse('user_panel'))
                     else:
                         login_form.add_error('email', 'نام کاربری و یا کلمه ی عبور اشتباه است')
             else:
@@ -155,7 +158,7 @@ class LoginView(View):
 #         return render(request, 'account_module/reset_password.html', context)
 #
 #
-# class LogoutView(View):
-#     def get(self, request):
-#         logout(request)
-#         return redirect(reverse('login_page'))
+class LogoutView(View):
+    def get(self, request):
+        logout(request)
+        return redirect(reverse('login_page'))
