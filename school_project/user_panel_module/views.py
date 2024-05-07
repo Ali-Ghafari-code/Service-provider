@@ -5,6 +5,9 @@ from django.views import View
 from django.views.generic import TemplateView
 from account_module.models import User
 from account_module.models import Servicer
+from user_panel_module.forms import UserProfileForm, ServicerProfileForm
+
+
 # from .forms import UserProfileForm
 
 
@@ -24,7 +27,7 @@ class EditUserProfilePage(View):
         context = {
             'form': edit_form
         }
-        return render(request, 'user_panel_module/edit_profile_page.html', context)
+        return render(request, 'user/edit_user_profile.html', context)
 
     def post(self, request):
         current_user = User.objects.filter(id=request.user.id).first()
@@ -35,10 +38,49 @@ class EditUserProfilePage(View):
         context = {
             'form': edit_form
         }
-        return render(request, 'user_panel_module/edit_profile_page.html', context)
+        return render(request, 'user/edit_user_profile.html', context)
 
 
-# def user_panel_menu_partial(request: HttpRequest):
-#     return render(request, 'user_panel_module/partials/user_panel_menu_partial.html')
-#
-#
+class EditServicerProfilePage(View):
+    def get(self, request):
+        current_user = User.objects.filter(id=request.user.id).first()
+        edit_form_user = UserProfileForm(instance=current_user)
+        current_servicer = Servicer.objects.filter(user=request.user).first()
+        edit_form = ServicerProfileForm(instance=current_servicer)
+        context = {
+            'servicer': edit_form,
+            'user': edit_form_user
+        }
+        return render(request, 'servicer/edit_user_profile.html', context)
+
+    def post(self, request):
+        current_user = User.objects.filter(id=request.user.id).first()
+        edit_form_user = UserProfileForm(request.POST, request.FILES, instance=current_user)
+        current_servicer = Servicer.objects.filter(user=request.user).first()
+        edit_form_servicer = ServicerProfileForm(request.POST, request.FILES, instance=current_servicer)
+
+        if edit_form_user.is_valid() and edit_form_servicer.is_valid():
+            edit_form_user.save(commit=True)
+            edit_form_servicer.save(commit=True)
+            servicer = Servicer.objects.filter(user=request.user).first()
+            if servicer:
+                request.session['servicer_info'] = {
+                    'gender': servicer.gender,
+                    'certificate': servicer.certificate,
+                    'experience': servicer.experience,
+                    'description': servicer.description
+                }
+
+        context = {
+            'servicer': edit_form_servicer,
+            'user': edit_form_user
+        }
+        return render(request, 'servicer/edit_user_profile.html', context)
+
+
+def servicer_panel_header(request: HttpRequest):
+    return render(request, 'servicer/shared/header_profile.html')
+
+
+def user_panel_header(request: HttpRequest):
+    return render(request, 'user/shared/header_profile.html')

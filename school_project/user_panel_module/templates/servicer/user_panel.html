@@ -1,34 +1,12 @@
 {% extends 'shared/_layout.html' %}
+{% load render_partial %}
 
 {% block title %}
     پنل کاربری
 {% endblock %}
 {% block main %}
     <main>
-    <div class="container mt-6">
-        <div class="row">
-            <div class="col">
-                <div class="panel-header px-md-5 px-2 w-100 py-2">
-                    <div class="d-flex justify-content-between py-3">
-                        <div class="user-img d-flex">
-                            <img class="rounded-circle border" src="/static/images/vecteezy_default-profile-account-unknown-icon-black-silhouette_20765399.jpg" alt="">
-                            <h3 class="align-content-center mx-2">نام کاربری</h3>
-                        </div>
-                        <div class="city-live d-flex mt-3">
-                            <i class="fa fa-location-dot"></i>
-                            <p class="mx-md-3 mx-1">تهران</p>
-                        </div>
-                    </div>
-                    <div class="user-panel-menu w-100 mt-5 d-flex justify-content-between overflow-x-auto overflow-y-hidden text-nowrap">
-                        <p class=""><a href="{% url 'user_panel' %}" class="py-4 px-2">اطلاعات من</a></p>
-                        <p class=""><a href="{% url 'edit_profile_page' %}" class="py-4 px-2">ویرایش اطلاعات</a></p>
-                        <p class=""><a href="#" class="py-4 px-2">کار های انجام شده و نظرات</a></p>
-                        <p class=""><a href="#" class="py-4 px-2">نمونه کارها</a></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+        {% render_partial 'user_panel_module.views.servicer_panel_header' %}
     <div class="container mt-3">
         <div class="row mx-2">
             <div class="col panel-main">
@@ -42,9 +20,9 @@
                                     </div>
                                     <input type="text" class="form-control" placeholder="{{ user.fullname }}"  disabled>
                                     <div class="d-flex justify-content-between">
-                                        <label class="p-3">ایمیل :</label>
+                                        <label class="p-3">جنسیت :</label>
                                     </div>
-                                    <input type="email" class="form-control" placeholder="{{ user.email }}" disabled>
+                                    <input type="email" class="form-control" placeholder="{{ request.session.servicer_info.gender }}" disabled>
                                     <div class="d-flex justify-content-between">
                                         <label class="p-3">کد ملی :</label>
                                     </div>
@@ -84,7 +62,7 @@
                                     </div>
                                     <input type="text" class="form-control" placeholder="{{ request.session.servicer_info.description }}" disabled>
                                 </div>
-                                <a href="#"><button type="submit" class="btn btn-danger mt-4 w-100">ویرایش و کامل کردن اطلاعات</button></a>
+                                <a href="{% url 'edit_servicer_page' %}"><button type="submit" class="btn btn-danger mt-4 w-100">ویرایش و کامل کردن اطلاعات</button></a>
                             </div>
                         </div>
                     </div>

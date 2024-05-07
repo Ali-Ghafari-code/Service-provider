@@ -40,14 +40,14 @@ class RegisterView(View):
                     new_user.save()
                     new_servicer = Servicer(user=new_user)
                     new_servicer.save()
-                    return redirect('servicer_panel')
+                    return redirect('login_page')
                 else:
                     new_user = User(email=user_email, email_active_code=get_random_string(72), is_active=False,
                                     username=user_email, fullname=fullname)
                     new_user.set_password(user_password)
                     new_user.save()
                     # send_email('فعال سازی حساب کاربری', new_user.email, {'user': new_user}, 'emails/active_account.html')
-                    return redirect('user_panel')
+                    return redirect('login_page')
 
         context = {
             'register_form': register_form
