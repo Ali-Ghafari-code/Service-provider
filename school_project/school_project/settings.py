@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'home_module',
     'account_module',
     'user_panel_module',
+    'user_request_module',
 
 ]
 

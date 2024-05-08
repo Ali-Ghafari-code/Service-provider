@@ -26,6 +26,7 @@ urlpatterns = [
     path('', include('home_module.urls')),
     path('', include('account_module.urls')),
     path('user/', include('user_panel_module.urls')),
+    path('user-request/', include('user_request_module.urls')),
 
 ]
 

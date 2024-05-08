@@ -9,8 +9,16 @@
             <div class="overlay w-100">
                 <h1>انجام تمامی خدمات خانه و نگهداری از سالمند شما</h1>
                 <h5 class="mx-5">میتوانید با خیال راحت و به راحتی در اینجا افرادی را پیدا کنید تا در مشکلات و خدمات خانگی شما به شما کمک کنند</h5>
-                <a href="submitRequest.html"><button class="btn btn-danger py-2 px-4 mt-3">ثبت درخواست</button></a>
-                <a href=""><button class="btn btn-secondary py-2 px-4 mt-3">ثبت خدمات خود</button></a>
+                {% if user.is_authenticated %}
+                    {% if user.is_servicer %}
+                        <a href=""><button class="btn btn-secondary py-2 px-4 mt-3">ثبت خدمات خود</button></a>
+                    {% else %}
+                        <a href="{% url 'user-request' %}"><button class="btn btn-danger py-2 px-4 mt-3">ثبت درخواست</button></a>
+                    {% endif %}
+                {% else %}
+                    <a href="{% url 'login_page' %}"><button class="btn btn-secondary py-2 px-4 mt-3">ثبت خدمات خود</button></a>
+                    <a href="{% url 'login_page' %}"><button class="btn btn-danger py-2 px-4 mt-3">ثبت درخواست</button></a>
+                {% endif %}
             </div>
         </div>
     </div>

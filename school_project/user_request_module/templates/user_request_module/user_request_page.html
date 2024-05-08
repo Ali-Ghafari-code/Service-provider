@@ -1,0 +1,94 @@
+{% extends 'shared/_layout.html' %}
+{% block title %}
+    ثبت درخواست
+{% endblock %}
+{% block main %}
+<main class="container-fluid px-0">
+    <div class="container mt-6">
+        <div class="row">
+            <div class="col">
+                <div class="w-100 d-flex mb-3">
+                    <h2 class="m-auto">درخواست خدمات</h2>
+                </div>
+                <form action="" class="w-100 bg-gray p-3">
+                    <select class="form-select py-3" aria-label="Default select example" name="type">
+                        <option selected>نوع خدمات مورد نیاز را وارد کنید</option>
+                        <option value="1">نگهداری از سالمند</option>
+                        <option value="2">تمیز کردن خانه</option>
+                        <option value="3">تعمیرات خانه</option>
+                        <option value="4">کمک در مجالس</option>
+                    </select>
+                    <div class="">
+                        <div class="my-4">
+                            <input data-jdp type="text" class="form-control py-3" id="inputdate" name="date" placeholder="انتخاب تاریخ و زمان">
+                        </div>
+                        <div class="my-4">
+                            <select class="form-select py-3" aria-label="Default select example" name="gender">
+                                <option selected>جنسیت خدمات دهنده را انتخاب کنید</option>
+                                <option value="1">خانم</option>
+                                <option value="2">آقا</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="d-md-flex w-100">
+                        <div class="w-md-50 w-100 my-4">
+                            <h6>تعداد نفرات مورد نیاز :</h6>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="personsnumber" id="inlineRadio1" value="1">
+                                <label class="form-check-label" for="inlineRadio1">1</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="personsnumber" id="inlineRadio2" value="2">
+                                <label class="form-check-label" for="inlineRadio2">2</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="personsnumber" id="inlineRadio3" value="3">
+                                <label class="form-check-label" for="inlineRadio3">3</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="personsnumber" id="inlineRadio4" value="4">
+                                <label class="form-check-label" for="inlineRadio4">4</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="personsnumber" id="inlineRadio5" value="5">
+                                <label class="form-check-label" for="inlineRadio5">5</label>
+                            </div>
+                        </div>
+                        <div class="w-md-50 w-100 my-4">
+                            <h6>ساعت مورد نیاز خدمات :</h6>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="personsnumber" id="timeRadio1" value="1">
+                                <label class="form-check-label" for="timeRadio1">1 ساعت</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="personsnumber" id="timeRadio2" value="2">
+                                <label class="form-check-label" for="timeRadio2">2 ساعت</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="personsnumber" id="timeRadio3" value="3">
+                                <label class="form-check-label" for="timeRadio3">3 ساعت</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="personsnumber" id="timeRadio4" value="4">
+                                <label class="form-check-label" for="timeRadio4">4 ساعت</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="personsnumber" id="timeRadio5" value="5">
+                                <label class="form-check-label" for="timeRadio5">5 ساعت</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="my-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">توضیحات لازم و خواست های شما :</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" placeholder="مثال: نوشتن دارو های فرد سالمند یا خواسته های شما برای تعمیر"></textarea>
+                    </div>
+                    <div class="mt-3">
+                        <input class="form-control py-3" type="text" placeholder="هزینه ی قابل پرداخت" disabled>
+                    </div>
+                    <input type="submit" class="btn btn-success w-100 mt-5 py-3" value="ثبت">
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

@@ -11,7 +11,7 @@ class User(AbstractUser):
     national_number = models.IntegerField(null=True, blank=True, verbose_name='شماره ملی')
     mobile_number = models.IntegerField(null=True, blank=True,verbose_name='شماره موبایل')
     birth_date = models.CharField(max_length=40, null=True, blank=True, verbose_name='تاریخ تولد')
-    is_servicer = models.CharField(max_length=100, verbose_name='خدمات دهنده', default=False)
+    is_servicer = models.BooleanField(verbose_name='خدمات دهنده', default=False)
 
 
     class Meta:

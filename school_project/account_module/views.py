@@ -92,6 +92,8 @@ class LoginView(View):
                                 return redirect(reverse('servicer_panel'))
                             else:
                                 return redirect(reverse('user_panel'))
+                        else:
+                            return redirect(reverse('user_panel'))
                     else:
                         login_form.add_error('email', 'نام کاربری و یا کلمه ی عبور اشتباه است')
             else:
@@ -172,5 +174,12 @@ class LoginView(View):
 #
 class LogoutView(View):
     def get(self, request):
+        # Clear session variables related to being a servicer
+        if 'servicer_info' in request.session:
+            del request.session['servicer_info']
+
+        # Logout the user
         logout(request)
+
+        # Redirect to the login page after logout
         return redirect(reverse('login_page'))

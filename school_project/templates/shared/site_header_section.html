@@ -10,8 +10,13 @@
                       </a>
                       <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
                         {% if user.is_authenticated %}
-                              <li><a class="dropdown-item" href="{% if user.is_servicer %}{% url 'servicer_panel' %}{% else %}{% url 'user_panel' %}{% endif %}">پنل کاربری</a></li>
-                              <li><a class="dropdown-item" href="{% url 'logout_page' %}">خروج</a></li>
+                            {% if user.is_servicer %}
+                                <li><a class="dropdown-item" href="{% url 'servicer_panel' %}">پنل کاربری</a></li>
+                                <li><a class="dropdown-item" href="{% url 'logout_page' %}">خروج</a></li>
+                            {% else %}
+                                <li><a class="dropdown-item" href="{% url 'user_panel' %}">پنل کاربری</a></li>
+                                <li><a class="dropdown-item" href="{% url 'logout_page' %}">خروج</a></li>
+                            {% endif %}
                           {% else %}
                                 <li><a class="dropdown-item" href="{% url 'register_page' %}">ساخت حساب</a></li>
                                 <li><a class="dropdown-item" href="{% url 'login_page' %}">ورود به حساب</a></li>
@@ -20,7 +25,7 @@
                     </li>
                     </div>
                     <div>
-                        <a href="#"><img src="/static/images/Logo.PNG" class="Logo" alt="Logo"></a>
+                        <a href="{% url 'home_page' %}"><img src="/static/images/Logo.PNG" class="Logo" alt="Logo"></a>
                     </div>
                 </div>
         </section>
