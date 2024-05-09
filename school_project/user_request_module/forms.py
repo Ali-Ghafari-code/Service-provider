@@ -1,5 +1,7 @@
 from django import forms
 from .models import Service
+from jalali_date.fields import JalaliDateField, SplitJalaliDateTimeField
+from jalali_date.widgets import AdminJalaliDateWidget, AdminSplitJalaliDateTime
 
 
 class ServiceForm(forms.ModelForm):
@@ -24,8 +26,8 @@ class ServiceForm(forms.ModelForm):
 
     type = forms.ChoiceField(choices=type_choices, label='نوع خدمات مورد نیاز',
                              widget=forms.Select(attrs={'class': 'form-select py-3'}))
-    service_date = forms.DateTimeField(label='تاریخ و زمان انجام خدمات', widget=forms.DateTimeInput(
-        attrs={'data-jdp': True, 'class': 'form-control py-3', 'placeholder': 'انتخاب تاریخ و زمان'}))
+    service_date = forms.CharField(
+        widget=forms.TextInput(attrs={'class': 'form-control py-3', 'placeholder': 'دوشنبه 5 اردیبهشت ساعت 3'}))
     gender = forms.ChoiceField(choices=gender_choices, label='جنسیت خدمات دهنده',
                                widget=forms.Select(attrs={'class': 'form-select py-3'}))
     service_time = forms.ChoiceField(choices=time_choices, label='ساعت مورد نیاز خدمات',
@@ -36,22 +38,17 @@ class ServiceForm(forms.ModelForm):
 
     class Meta:
         model = Service
-        fields = ['type', 'gender', 'description', 'price', 'service_date', 'address', 'service_time']
+        fields = ['type', 'gender', 'description', 'price', 'service_time']
         labels = {
             'type': 'نوع خدمات',
             'gender': 'جنسیت خدمات دهنده',
             'description': 'توضیحات',
             'price': 'هزینه',
-            'service_date': 'تاریخ انجام پروژه',
-            'address': 'محل انجام خدمات',
             'service_time': 'ساعت خدمت'
         }
         widgets = {
             'description': forms.Textarea(attrs={'class': 'form-control', 'rows': 5}),
             'price': forms.NumberInput(attrs={'class': 'form-control'}),
-            'service_date': forms.DateTimeInput(
-                attrs={'class': 'form-control py-3', 'data-jdp': True, 'placeholder': 'تاریخ و زمان انجام'}),
-            'address': forms.Textarea(attrs={'class': 'form-control', 'rows': 5}),
             'gender': forms.Select(attrs={'class': 'form-select py-3'}),
             'service_time': forms.Select(attrs={'class': 'form-select py-3'})
         }
