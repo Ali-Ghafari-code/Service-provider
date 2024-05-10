@@ -4,7 +4,7 @@ from django.views.generic import ListView, DetailView
 from jalali_date import datetime2jalali, date2jalali
 from account_module.models import User
 from account_module.models import Servicer
-from user_request_module.forms import ServiceForm
+from user_request_module.forms import ServiceForm, Servicertypeform
 from user_request_module.models import Service
 
 
@@ -12,6 +12,34 @@ from user_request_module.models import Service
 
 
 # Create your views here.
+class ServicerTypePage(View):
+    def get(self, request):
+        edit_form = Servicertypeform()
+        context = {
+            'form': edit_form
+        }
+        return render(request, 'servicer_type_module/servicer_type_page.html', context)
+
+    def post(self, request):
+        current_servicer = Servicer.objects.filter(user=request.user).first()
+        edit_form_servicer = Servicertypeform(request.POST, request.FILES, instance=current_servicer)
+        if edit_form_servicer.is_valid():
+            edit_form_servicer.save(commit=True)
+            servicer = Servicer.objects.filter(user=request.user).first()
+            if servicer:
+                request.session['servicer_info'] = {
+                    'gender': servicer.gender,
+                    'certificate': servicer.certificate,
+                    'experience': servicer.experience,
+                    'description': servicer.description
+                }
+            return redirect('servicer_panel')
+        context = {
+            'form': edit_form_servicer
+        }
+        return render(request, 'servicer_type_module/servicer_type_page.html', context)
+
+
 class UserRequestPage(View):
     def get(self, request):
         edit_form = ServiceForm()

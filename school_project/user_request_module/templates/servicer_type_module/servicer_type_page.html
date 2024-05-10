@@ -1,0 +1,40 @@
+{% extends 'shared/_layout.html' %}
+{% block title %}
+    خدمات خود را ثبت کنید
+{% endblock %}
+{% block main %}
+    <main class="container-fluid px-0">
+    <div class="container mt-6">
+        <div class="row">
+            <div class="col">
+                <div class="w-100 d-flex mb-3">
+                    <h2 class="m-auto">ثبت خدمات خود</h2>
+                </div>
+                {{ form.errors }}
+                <form action="{% url 'servicer-type' %}" method="post" class="w-100 bg-gray p-3">
+                    {% csrf_token %}
+                    <div class="my-4">
+                            {{ form.type }}
+                    </div>
+                    <div class="w-100 d-md-flex">
+                        <div class="my-4 w-md-50 w-100">
+                           {{ form.experience}}
+                        </div>
+                    </div>
+                    <div class="my-4">
+                            {{ form.gender }}
+                    </div>
+                    <div class="my-4">
+                            {{ form.certificate }}
+                    </div>
+                    <div class="my-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">شرح خدمات و مهارت های خود :</label>
+                        {{ form.description }}
+                    </div>
+                    <input type="submit" class="btn btn-success w-100 mt-5 py-3" value="ثبت">
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

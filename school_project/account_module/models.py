@@ -9,10 +9,9 @@ class User(AbstractUser):
     email_active_code = models.CharField(max_length=100, verbose_name='کد فعالسازی ایمیل')
     address = models.TextField(null=True, blank=True, verbose_name='آدرس')
     national_number = models.IntegerField(null=True, blank=True, verbose_name='شماره ملی')
-    mobile_number = models.IntegerField(null=True, blank=True,verbose_name='شماره موبایل')
+    mobile_number = models.IntegerField(null=True, blank=True, verbose_name='شماره موبایل')
     birth_date = models.CharField(max_length=40, null=True, blank=True, verbose_name='تاریخ تولد')
     is_servicer = models.BooleanField(verbose_name='خدمات دهنده', default=False)
-
 
     class Meta:
         verbose_name = 'کاربر'
@@ -30,7 +29,6 @@ class Servicer(models.Model):
     is_submited = models.BooleanField(verbose_name='تایید شده', default=False, blank=True)
     experience = models.IntegerField(null=True, blank=True, verbose_name='سال تجربه')
     description = models.CharField(max_length=300, verbose_name='توضیحات', blank=True)
-
 
     class Meta:
         verbose_name = 'خدمات دهنده'

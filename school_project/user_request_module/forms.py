@@ -1,4 +1,6 @@
 from django import forms
+
+from account_module.models import Servicer
 from .models import Service
 from jalali_date.fields import JalaliDateField, SplitJalaliDateTimeField
 from jalali_date.widgets import AdminJalaliDateWidget, AdminSplitJalaliDateTime
@@ -52,3 +54,42 @@ class ServiceForm(forms.ModelForm):
             'gender': forms.Select(attrs={'class': 'form-select py-3'}),
             'service_time': forms.Select(attrs={'class': 'form-select py-3'})
         }
+
+
+class Servicertypeform(forms.ModelForm):
+    type_choices = [
+        ('نگهداری از سالمندان', 'نگهداری از سالمندان'),
+        ('تمیز کردن خانه', 'تمیز کردن خانه'),
+        ('تعمیرات خانه', 'تعمیرات خانه'),
+        ('کمک در مجالس', 'کمک در مجالس'),
+    ]
+    gender_choices = [
+        ('خانم', 'خانم'),
+        ('آقا', 'آقا'),
+    ]
+
+    certificate_choices = [
+        ('دیپلم', 'دیپلم'),
+        ('لیسانس', 'لیسانس'),
+        ('فوق لیسانس', 'فوق لیسانس'),
+        ('دکترا', 'دکترا'),
+    ]
+
+    type = forms.ChoiceField(choices=type_choices, widget=forms.Select(attrs={'class': 'form-select py-3'}))
+    experience = forms.IntegerField(
+        widget=forms.NumberInput(attrs={'class': 'form-control py-3', 'placeholder': 'سابقه ی فعالیت شما به سال در این حیطه'}))
+    gender = forms.ChoiceField(choices=gender_choices, label='جنسیت خدمات دهنده', widget=forms.Select(attrs={'class': 'form-select py-3'}))
+    certificate = forms.ChoiceField(choices=certificate_choices, widget=forms.Select(attrs={'class': 'form-select py-3'}))
+    description = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control', 'rows': '5', 'placeholder': 'مثال: نوشتن دارو های فرد سالمند یا خواسته های شما برای تعمیر'}), label='توضیحات لازم و خواسته‌های شما')
+
+    class Meta:
+        model = Servicer
+        fields = ['type', 'gender', 'description', 'certificate', 'experience']
+        widgets = {
+            'type': forms.Select(attrs={'class': 'form-select py-3'}),
+            'description': forms.Textarea(attrs={'class': 'form-control', 'rows': 5}),
+            'experience': forms.NumberInput(attrs={'class': 'form-control'}),
+            'gender': forms.Select(attrs={'class': 'form-select py-3'}),
+            'certificate': forms.Select(attrs={'class': 'form-select py-3'})
+        }
+
