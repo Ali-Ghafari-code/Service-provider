@@ -25,3 +25,15 @@ class SubmitServiceView(View):
 
     def post(self, request, *args, **kwargs):
         pass
+
+
+class DeleteServiceView(View):
+    def get(self, request, *args, **kwargs):
+        service_id = self.kwargs.get('service_id')
+        service = get_object_or_404(Service, pk=service_id)
+        if service.user == request.user:
+            service.delete()
+            return redirect('user_service_request')
+        else:
+            messages.error(request, "شما مجاز به حذف این سرویس نیستید.")
+            return redirect('servicer_panel')
