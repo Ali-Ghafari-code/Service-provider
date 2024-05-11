@@ -4,7 +4,6 @@ from django.utils.text import slugify
 from jalali_date import date2jalali
 
 from account_module.models import User, Servicer
-from django_jalali.db import models as jmodels
 
 
 # Create your models here.

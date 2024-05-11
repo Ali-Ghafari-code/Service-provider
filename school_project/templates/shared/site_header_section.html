@@ -12,9 +12,10 @@
                         {% if user.is_authenticated %}
                             {% if user.is_servicer %}
                                 <li><a class="dropdown-item" href="{% url 'servicer_panel' %}">پنل کاربری</a></li>
+                                <li><a class="dropdown-item" href="{% url 'requests' %}">درخواست های خدمات</a></li>
                                 <li><a class="dropdown-item" href="{% url 'logout_page' %}">خروج</a></li>
                             {% else %}
-                                <li><a class="dropdown-item" href="{% url 'user_panel' %}">پنل کاربری</a></li>
+                                <li><a class="dropdown-item" href="{% url 'user_panel' %}">پنلکاربری </a></li>
                                 <li><a class="dropdown-item" href="{% url 'logout_page' %}">خروج</a></li>
                             {% endif %}
                           {% else %}

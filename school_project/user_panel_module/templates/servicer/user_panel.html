@@ -14,6 +14,13 @@
                     <div>
                         <div class="mt-4 px-3 pb-4 form-group">
                             <div class="row">
+                                {% if messages %}
+                                <div class="alert alert-danger" role="alert">
+                                    {% for message in messages %}
+                                        {{ message }}
+                                    {% endfor %}
+                                </div>
+                                {% endif %}
                                 <div class="col-lg-6">
                                     <div class="d-flex justify-content-between">
                                         <label class="p-3">نام و نام خانوادگی :</label>

@@ -21,7 +21,7 @@
                         <p class="card-text">ساعت شروع به کار :{{ object.service_date }}</p>
                         <p class="card-text">مدت زمان کار: {{ object.service_time }} ساعت</p>
                     </div>
-                    <a href="#" class="btn btn-success my-3">پذیرفتن خدمات</a>
+                    <a href="{% url 'service-submit' service.id %}" class="btn btn-success my-3">پذیرفتن خدمات</a>
                 </div>
                 <div class="card-footer text-muted">
                     {{ object.created_at }}

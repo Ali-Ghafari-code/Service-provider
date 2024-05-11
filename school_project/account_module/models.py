@@ -33,3 +33,6 @@ class Servicer(models.Model):
     class Meta:
         verbose_name = 'خدمات دهنده'
         verbose_name_plural = 'خدمات دهندگان'
+
+    def __str__(self):
+        return self.user.email

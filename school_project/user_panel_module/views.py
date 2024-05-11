@@ -2,10 +2,11 @@ from django.http import HttpRequest, JsonResponse
 from django.shortcuts import render
 from django.template.loader import render_to_string
 from django.views import View
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, DetailView
 from account_module.models import User
 from account_module.models import Servicer
 from user_panel_module.forms import UserProfileForm, ServicerProfileForm
+from user_request_module.models import Service
 
 
 # from .forms import UserProfileForm
@@ -18,6 +19,16 @@ class UserPanelDashboardPage(TemplateView):
 
 class ServicerPanelDashboardPage(TemplateView):
     template_name = 'servicer/user_panel.html'
+
+
+class UserServiceSubmit(View):
+    def get(self, request):
+        current_servicer = Servicer.objects.filter(user=request.user).first()
+        context = Service.objects.filter(servicer=current_servicer).get()
+        context = {
+            'context': context
+        }
+        return render(request, 'servicer/user_service_submit.html', context)
 
 
 class EditUserProfilePage(View):
