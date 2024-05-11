@@ -31,6 +31,16 @@ class UserServiceSubmit(View):
         return render(request, 'servicer/user_service_submit.html', context)
 
 
+class UserServiceRequest(View):
+    def get(self, request):
+        current_user = User.objects.filter(id=request.user.id).first()
+        context = Service.objects.filter(user=current_user).all()
+        context = {
+            'context': context
+        }
+        return render(request, 'user/user_service_request.html', context)
+
+
 class EditUserProfilePage(View):
     def get(self, request):
         current_user = User.objects.filter(id=request.user.id).first()

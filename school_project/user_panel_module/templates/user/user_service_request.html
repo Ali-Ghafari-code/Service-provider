@@ -1,0 +1,44 @@
+{% extends 'shared/_layout.html' %}
+{% load render_partial %}
+
+{% block main %}
+    <main>
+        {% render_partial 'user_panel_module.views.servicer_panel_header' %}
+         <div class="container mt-3">
+                <div class="row mx-2">
+                    <div class="requests">
+                    {% for service in context %}
+                    <div class="card cardrequest mb-3 p-3">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                              {% if service.type == 'نگهداری از سالمند' %}
+                                    <img src="/static/images/older.jpeg" class="img-fluid rounded-start" alt="...">
+                              {% endif %}
+                              {% if service.type == 'تمیز کردن خانه' %}
+                                    <img src="/static/images/professional-cleaning-service-person-cleaning-office-window_23-2150520601.jpg" class="img-fluid rounded-start" alt="...">
+                              {% endif %}
+                                {% if service.type == 'تعمیرات خانه' %}
+                                    <img src="/static/images/people-renovating-house-concept_53876-20664.jpg" class="img-fluid rounded-start" alt="...">
+                              {% endif %}
+                                {% if service.type == 'کمک در مجالس' %}
+                                    <img src="/static/images/waiter-carries-plate-with-tasty-snacks_8353-1264.jpg" class="img-fluid rounded-start" alt="...">
+                              {% endif %}
+
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ service.type }}</h5>
+                                    <p class="card-text">{{ service.description }}</p>
+                                    <p class="card-text"><small class="text-muted">چندساعت طول میکشد: {{ service.service_time }}</small> <small class="text-muted mx-3">{{ service.service_date }}</small>
+                                    <small class="text-muted mx-3">خدمات رسان مورد نیاز:{{ service.gender }}</small><small class="text-muted mx-3">هزینه :{{ service.price }}</small></p>
+                                    <a href="{% url 'Service_detail' pk=service.pk %}" class="btn btn-danger">اطلاعات بیشتر</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                </div>
+         </div>
+    </main>
+{% endblock %}
