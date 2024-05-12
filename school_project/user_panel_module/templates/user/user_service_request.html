@@ -31,11 +31,16 @@
                                     <p class="card-text">{{ service.description }}</p>
                                     <p class="card-text"><small class="text-muted">چندساعت طول میکشد: {{ service.service_time }}</small> <small class="text-muted mx-3">{{ service.service_date }}</small>
                                     <small class="text-muted mx-3">خدمات رسان مورد نیاز:{{ service.gender }}</small><small class="text-muted mx-3">هزینه :{{ service.price }}</small></p>
+                                    {% if pay.success %}
+                                        <p class="h3 text-danger">پرداخت شده</p>
+                                        <a href="#" class="btn btn-success">ثبت نظر</a>
+                                    {% else %}
                                     <form action="{% url 'payment_page' %}" method="post" class="my-3">
                                         {% csrf_token %}
                                         <input type="hidden" name="service_id" value="{{ service.id }}">
                                         <button type="submit" class="btn btn-danger">پرداخت</button>
                                     </form>
+                                    {% endif %}
                                     <a href="{% url 'Service_delete' service.id %}" class="btn btn-danger">حذف درخواست</a>
                                 </div>
                             </div>

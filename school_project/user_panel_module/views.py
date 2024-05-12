@@ -44,8 +44,12 @@ class UserServiceRequest(View):
     def get(self, request):
         current_user = User.objects.filter(id=request.user.id).first()
         context = Service.objects.filter(user=current_user).all()
+        for service in context:
+            payment = Payment.objects.filter(service=service).first()
+
         context = {
-            'context': context
+            'context': context,
+            'pay': payment,
         }
         return render(request, 'user/user_service_request.html', context)
 
