@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'user_panel_module',
     'user_request_module',
     'servicer_submit_module',
+    'payment_module',
 
 
 ]
@@ -87,6 +88,7 @@ WSGI_APPLICATION = 'school_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 AUTH_USER_MODEL = 'account_module.User'
+LOGIN_URL = '/login'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',

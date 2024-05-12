@@ -1,10 +1,13 @@
+from django.contrib.auth.decorators import login_required
 from django.http import HttpRequest, JsonResponse
 from django.shortcuts import render
 from django.template.loader import render_to_string
+from django.utils.decorators import method_decorator
 from django.views import View
 from django.views.generic import TemplateView, DetailView
 from account_module.models import User
 from account_module.models import Servicer
+from payment_module.models import Payment
 from user_panel_module.forms import UserProfileForm, ServicerProfileForm
 from user_request_module.models import Service
 
@@ -13,24 +16,30 @@ from user_request_module.models import Service
 
 
 # Create your views here.
+@method_decorator(login_required, name='dispatch')
 class UserPanelDashboardPage(TemplateView):
     template_name = 'user/user_panel.html'
 
 
+@method_decorator(login_required, name='dispatch')
 class ServicerPanelDashboardPage(TemplateView):
     template_name = 'servicer/user_panel.html'
 
 
+@method_decorator(login_required, name='dispatch')
 class UserServiceSubmit(View):
     def get(self, request):
         current_servicer = Servicer.objects.filter(user=request.user).first()
         context = Service.objects.filter(servicer=current_servicer).get()
+        context_2 = Payment.objects.filter(service=context.id).first()
         context = {
-            'context': context
+            'context': context,
+            'pay': context_2,
         }
         return render(request, 'servicer/user_service_submit.html', context)
 
 
+@method_decorator(login_required, name='dispatch')
 class UserServiceRequest(View):
     def get(self, request):
         current_user = User.objects.filter(id=request.user.id).first()
@@ -41,6 +50,7 @@ class UserServiceRequest(View):
         return render(request, 'user/user_service_request.html', context)
 
 
+@method_decorator(login_required, name='dispatch')
 class EditUserProfilePage(View):
     def get(self, request):
         current_user = User.objects.filter(id=request.user.id).first()
@@ -62,6 +72,7 @@ class EditUserProfilePage(View):
         return render(request, 'user/edit_user_profile.html', context)
 
 
+@method_decorator(login_required, name='dispatch')
 class EditServicerProfilePage(View):
     def get(self, request):
         current_user = User.objects.filter(id=request.user.id).first()

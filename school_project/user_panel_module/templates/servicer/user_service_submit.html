@@ -22,7 +22,15 @@
                         <p class="card-text">ساعت شروع به کار :{{ context.service_date }}</p>
                         <p class="card-text">مدت زمان کار: {{ context.service_time }} ساعت</p>
                     </div>
-                    <p class="card-text">آدرس : {{ context.user.address }}</p>
+                    <div class="d-flex justify-content-around">
+                        <p class="card-text">آدرس : {{ context.user.address }}</p>
+                        {% if pay.success %}
+                            <p class="card-text">وضعیت پرداخت : پرداخت شده</p>
+                            {% else %}
+                            <p class="card-text">وضعیت پرداخت : پرداخت نشده</p>
+                        {% endif %}
+
+                    </div>
                 </div>
                 <div class="card-footer text-muted">
                     {{ context.created_at }}

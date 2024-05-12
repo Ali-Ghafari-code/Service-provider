@@ -4,6 +4,7 @@ from django.utils.text import slugify
 from jalali_date import date2jalali
 
 from account_module.models import User, Servicer
+from payment_module.models import Payment
 
 
 # Create your models here.
@@ -20,5 +21,7 @@ class Service(models.Model):
     service_time = models.IntegerField(verbose_name='ساعت خدمت')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='ساعت خدمت')
     is_submit = models.BooleanField(default=False, verbose_name='قبول شده / نشده')
+    pay = models.OneToOneField(Payment, on_delete=models.SET_NULL, null=True, blank=True,
+                               related_name='related_service_payment')
 
 

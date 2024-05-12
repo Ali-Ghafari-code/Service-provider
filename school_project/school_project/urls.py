@@ -28,6 +28,7 @@ urlpatterns = [
     path('user/', include('user_panel_module.urls')),
     path('user-request/', include('user_request_module.urls')),
     path('service-submit/', include('servicer_submit_module.urls')),
+    path('pay-service/', include('payment_module.urls')),
 
 ]
 
