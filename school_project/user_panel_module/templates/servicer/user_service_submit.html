@@ -29,8 +29,10 @@
                             {% else %}
                             <p class="card-text">وضعیت پرداخت : پرداخت نشده</p>
                         {% endif %}
-
                     </div>
+                    {% if pay.success %}
+                        <a href="#" class="btn btn-danger">اتمام خدمات</a>
+                    {% endif %}
                 </div>
                 <div class="card-footer text-muted">
                     {{ context.created_at }}
