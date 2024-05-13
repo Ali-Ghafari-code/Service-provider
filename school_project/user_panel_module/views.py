@@ -8,7 +8,7 @@ from django.views.generic import TemplateView, DetailView
 from account_module.models import User
 from account_module.models import Servicer
 from payment_module.models import Payment
-from user_panel_module.forms import UserProfileForm, ServicerProfileForm
+from user_panel_module.forms import UserProfileForm, ServicerProfileForm, CommentForm
 from user_request_module.models import Service
 
 
@@ -113,6 +113,18 @@ class EditServicerProfilePage(View):
         }
         return render(request, 'servicer/edit_user_profile.html', context)
 
+
+class ServiceComment(View):
+    def get(self, request, service_id):
+        comment_form = CommentForm()
+        context = {
+            'comment': comment_form,
+        }
+        return render(request, 'user/user_comment.html', context)
+
+
+    def post(self, request):
+        pass
 
 def servicer_panel_header(request: HttpRequest):
     return render(request, 'servicer/shared/header_profile.html')

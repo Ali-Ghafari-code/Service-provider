@@ -30,7 +30,8 @@ class ServicerProfileForm(forms.ModelForm):
         }
 
 
-
+class CommentForm(forms.Form):
+    comment = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control', 'id': 'exampleFormControlTextarea1', 'rows': 3}))
 
 
 

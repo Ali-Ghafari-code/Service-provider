@@ -11,7 +11,8 @@ class PayService(View):
 
         payment = Payment.objects.create(
             service=service,
-            amount=service.price
+            amount=service.price,
+            success=True
         )
 
         service.pay = payment
