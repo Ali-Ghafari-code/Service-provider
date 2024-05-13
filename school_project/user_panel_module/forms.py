@@ -1,6 +1,7 @@
 # forms.py
 from django import forms
 from account_module.models import User, Servicer
+from user_panel_module.models import Comment
 
 
 class UserProfileForm(forms.ModelForm):
@@ -30,8 +31,15 @@ class ServicerProfileForm(forms.ModelForm):
         }
 
 
-class CommentForm(forms.Form):
-    comment = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control', 'id': 'exampleFormControlTextarea1', 'rows': 3}))
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ['comment']
+        widgets = {
+            'comment': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'پیشنهادات و انتقادات خود را ذکر کنید', 'rows':3}),
+        }
+
+    service_id = forms.IntegerField(widget=forms.HiddenInput())
 
 
 

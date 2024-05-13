@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.http import HttpRequest, JsonResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from django.template.loader import render_to_string
 from django.utils.decorators import method_decorator
 from django.views import View
@@ -9,6 +9,7 @@ from account_module.models import User
 from account_module.models import Servicer
 from payment_module.models import Payment
 from user_panel_module.forms import UserProfileForm, ServicerProfileForm, CommentForm
+from user_panel_module.models import Comment
 from user_request_module.models import Service
 
 
@@ -116,15 +117,44 @@ class EditServicerProfilePage(View):
 
 class ServiceComment(View):
     def get(self, request, service_id):
-        comment_form = CommentForm()
+        comment_form = CommentForm(
+            initial={'service_id': service_id})  # افزودن service_id به فرم به عنوان مقدار پیشفرض فیلد پنهان
         context = {
             'comment': comment_form,
         }
         return render(request, 'user/user_comment.html', context)
 
 
+class ServiceCommentSave(View):
     def post(self, request):
-        pass
+        service_id = request.POST.get('service_id')
+        comment_text = request.POST.get('comment')
+        user = request.user
+
+        comment = Comment.objects.create(
+            service_id=service_id,
+            user=user,
+            servicer=Service.objects.get(id=service_id),
+            comment=comment_text
+        )
+        comment.service.comment = comment
+        comment.service.save()
+        return redirect('user_service_request')
+
+
+class ServicerComment(View):
+    def get(self,request):
+        servicer = get_object_or_404(Servicer, user=request.user)
+
+        services = Service.objects.filter(servicer=servicer).all()
+
+        servicer_comments = Comment.objects.filter(service__in=services).all()
+
+        context = {
+            'servicer_comments': servicer_comments
+        }
+        return render(request, 'servicer/user_panel_works_comment.html', context)
+
 
 def servicer_panel_header(request: HttpRequest):
     return render(request, 'servicer/shared/header_profile.html')
