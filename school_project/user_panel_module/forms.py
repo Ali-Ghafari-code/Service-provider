@@ -24,7 +24,7 @@ class ServicerProfileForm(forms.ModelForm):
         model = Servicer
         fields = ['gender', 'certificate', 'experience', 'description']
         widgets = {
-            'gender': forms.TextInput(attrs={'class': 'form-control'}),
+            'gender': forms.TextInput(attrs={'class': 'form-control', 'placeholder':'آقا / خانم'}),
             'certificate': forms.TextInput(attrs={'class': 'form-control'}),
             'experience': forms.NumberInput(attrs={'class': 'form-control'}),
             'description': forms.TextInput(attrs={'class': 'form-control'}),

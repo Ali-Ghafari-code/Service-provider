@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import HttpRequest, JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
@@ -125,6 +126,14 @@ class ServiceComment(View):
         return render(request, 'user/user_comment.html', context)
 
 
+class DeleteServiceView(View):
+    def get(self, request, service_id, *args, **kwargs):
+        service = Service.objects.get(id=service_id)
+        service.delete()
+        messages.success(request, "پایان خدمات با موفقیت انجام شد")
+        return redirect('servicer_panel')
+
+
 class ServiceCommentSave(View):
     def post(self, request):
         service_id = request.POST.get('service_id')
@@ -143,7 +152,7 @@ class ServiceCommentSave(View):
 
 
 class ServicerComment(View):
-    def get(self,request):
+    def get(self, request):
         servicer = get_object_or_404(Servicer, user=request.user)
 
         services = Service.objects.filter(servicer=servicer).all()

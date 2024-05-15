@@ -31,7 +31,7 @@
                         {% endif %}
                     </div>
                     {% if pay.success %}
-                        <a href="#" class="btn btn-danger">اتمام خدمات</a>
+                        <a href="{% url 'delete-service' context.id %}" class="btn btn-danger">اتمام خدمات</a>
                     {% endif %}
                 </div>
                 <div class="card-footer text-muted">
