@@ -2,12 +2,14 @@
 {% load render_partial %}
 
 {% block main %}
-    <main>
+        <main>
             {% render_partial 'user_panel_module.views.user_panel_header' %}
          <div class="container mt-3">
                 <div class="row mx-2">
                     <div class="requests">
                     {% for service in context %}
+                        {% if service.pay == Null %}
+
                     <div class="card cardrequest mb-3 p-3">
                         <div class="row g-0">
                             <div class="col-md-4">
@@ -31,30 +33,60 @@
                                     <p class="card-text">{{ service.description }}</p>
                                     <p class="card-text"><small class="text-muted">چندساعت طول میکشد: {{ service.service_time }}</small> <small class="text-muted mx-3">{{ service.service_date }}</small>
                                     <small class="text-muted mx-3">خدمات رسان مورد نیاز:{{ service.gender }}</small><small class="text-muted mx-3"> هزینه : {{ service.price }} </small></p>
-
-
-
-                                    {% if pay.success %}
-                                        <p class="h3 text-danger">پرداخت شده</p>
-                                        <a href="{% url 'service-comment' service.id %}" class="btn btn-success">ثبت نظر</a>
-                                    {% else %}
                                         {% if service.servicer != Null %}
-                                            <p class="h3 text-success">پذیرفته شده</p>
                                     <form action="{% url 'payment_page' %}" method="post" class="my-3">
                                         {% csrf_token %}
                                         <input type="hidden" name="service_id" value="{{ service.id }}">
                                         <button type="submit" class="btn btn-danger">پرداخت</button>
                                     </form>
-                                            {% endif %}
                                     {% endif %}
                                     <a href="{% url 'Service_delete' service.id %}" class="btn btn-danger">حذف درخواست</a>
                                 </div>
                             </div>
                         </div>
                     </div>
+                        {% endif %}
                     {% endfor %}
                 </div>
                 </div>
+                <div class="row mx-2 border-top border-3">
+                <p class="h2 my-3">پرداخت شده</p>
+                    {% for service in context %}
+                        {% if service.pay != Null %}
+                    <div class="card cardrequest mb-3 p-3">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                              {% if service.type == 'نگهداری از سالمند' %}
+                                    <img src="/static/images/older.jpeg" class="img-fluid rounded-start" alt="...">
+                              {% endif %}
+                              {% if service.type == 'تمیز کردن خانه' %}
+                                    <img src="/static/images/professional-cleaning-service-person-cleaning-office-window_23-2150520601.jpg" class="img-fluid rounded-start" alt="...">
+                              {% endif %}
+                                {% if service.type == 'تعمیرات خانه' %}
+                                    <img src="/static/images/people-renovating-house-concept_53876-20664.jpg" class="img-fluid rounded-start" alt="...">
+                              {% endif %}
+                                {% if service.type == 'کمک در مجالس' %}
+                                    <img src="/static/images/waiter-carries-plate-with-tasty-snacks_8353-1264.jpg" class="img-fluid rounded-start" alt="...">
+                              {% endif %}
+
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ service.type }}</h5>
+                                    <p class="card-text">{{ service.description }}</p>
+                                    <p class="card-text"><small class="text-muted">چندساعت طول میکشد: {{ service.service_time }}</small> <small class="text-muted mx-3">{{ service.service_date }}</small>
+                                    <small class="text-muted mx-3">خدمات رسان مورد نیاز:{{ service.gender }}</small><small class="text-muted mx-3"> هزینه : {{ service.price }} </small></p>
+                                        <p class="h3 text-danger">پرداخت شده</p>
+                                        <a href="{% url 'service-comment' service.id %}" class="btn btn-success">ثبت نظر</a>
+                                    <a href="{% url 'Service_delete' service.id %}" class="btn btn-danger">حذف درخواست</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
          </div>
     </main>
+
 {% endblock %}

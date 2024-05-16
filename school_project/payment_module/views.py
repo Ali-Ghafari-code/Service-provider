@@ -8,12 +8,12 @@ class PayService(View):
     def post(self, request):
         service_id = request.POST.get('service_id')
         service = Service.objects.get(id=service_id)
-
-        payment = Payment.objects.create(
-            service=service,
-            amount=service.price,
-            success=True
-        )
+        if service.servicer != "":
+            payment = Payment.objects.create(
+                service=service,
+                amount=service.price,
+                success=True
+            )
 
         service.pay = payment
         service.save()

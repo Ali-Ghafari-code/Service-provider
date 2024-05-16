@@ -32,7 +32,7 @@ class ServicerPanelDashboardPage(TemplateView):
 class UserServiceSubmit(View):
     def get(self, request):
         current_servicer = Servicer.objects.filter(user=request.user).first()
-        context = Service.objects.filter(servicer=current_servicer).get()
+        context = Service.objects.filter(servicer=current_servicer).first()
         context_2 = Payment.objects.filter(service=context.id).first()
         context = {
             'context': context,
