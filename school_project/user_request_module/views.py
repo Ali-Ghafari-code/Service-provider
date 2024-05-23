@@ -78,7 +78,7 @@ class UserRequestPage(View):
 
 class RequestsPage(ListView):
     model = Service
-    paginate_by = 1
+    paginate_by = 2
 
     def get_queryset(self):
         queryset = super().get_queryset()

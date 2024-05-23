@@ -35,4 +35,4 @@ class Servicer(models.Model):
         verbose_name_plural = 'خدمات دهندگان'
 
     def __str__(self):
-        return self.user.email
+        return self.user.fullname
