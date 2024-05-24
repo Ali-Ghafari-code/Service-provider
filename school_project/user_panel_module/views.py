@@ -165,8 +165,9 @@ class ServicerComment(View):
         return render(request, 'servicer/user_panel_works_comment.html', context)
 
 
-def servicer_panel_header(request: HttpRequest):
-    return render(request, 'servicer/shared/header_profile.html')
+def servicer_panel_header(request):
+    service = Service.objects.filter(servicer=request.user.servicer)
+    return render(request, 'servicer/shared/header_profile.html', {'service': service})
 
 
 def user_panel_header(request: HttpRequest):
