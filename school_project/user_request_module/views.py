@@ -82,7 +82,8 @@ class RequestsPage(ListView):
 
     def get_queryset(self):
         queryset = super().get_queryset()
-        # فیلتر کردن اشیاء بر اساس مقدار is_submit
+        user = self.request.user
+        user_city = user.city
         context = queryset.filter(is_submit=False)
         return context
 
